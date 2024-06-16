@@ -47,7 +47,7 @@ export default function FormEditSSR() {
   const handleSubmit = async (event) => {
   event.preventDefault();
   try {
-    const response = await axios.put(`http://localhost:8000/akun/${formData.nama_pengguna}`, formData);
+    const response = await axios.put(`https://sidak-ils-three.vercel.app/akun/${formData.nama_pengguna}`, formData);
     if (response.status === 200) {
       alert("Data updated successfully");
       router.push("/admin/ssr"); // Redirect ke halaman lain setelah perubahan berhasil
