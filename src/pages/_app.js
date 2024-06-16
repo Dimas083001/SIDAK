@@ -66,6 +66,7 @@ export default class MyApp extends App {
           />
           <title>SIDAK</title>
           {/* <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> */}
+
         </Head>
         <Layout>
           <Component {...pageProps} />
