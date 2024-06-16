@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "../../../hooks/useAuth"; // Pastikan jalur impor benar
 // components
-import TableSSR from "../../../components/Cards/CardTableSSR";
+import TableSSR from "../../../../src/components/Cards/CardTablessr";
 // layout for page
 import Admin from "../../../layouts/Admin";
 
