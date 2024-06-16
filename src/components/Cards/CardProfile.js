@@ -21,10 +21,10 @@ export default function CardProfile() {
 
   const fetchUserData = async (namaPengguna) => {
     try {
-      const response = await axios.get(`http://localhost:8000/akun/${namaPengguna}`);
+      const response = await axios.get(`https://sidak-ils-three.vercel.app/akun/${namaPengguna}`);
       setUserData(response.data);
       if (response.data.foto_url) {
-        setFotoURL(`http://localhost:8000${response.data.foto_url}`);
+        setFotoURL(`https://sidak-ils-three.vercel.app${response.data.foto_url}`);
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
@@ -58,7 +58,7 @@ export default function CardProfile() {
     formData.append("foto", selectedFile);
 
     try {
-      const response = await axios.post(`http://localhost:8000/upload_foto_profil/${userData?.nama_pengguna}`, formData, {
+      const response = await axios.post(`https://sidak-ils-three.vercel.app/upload_foto_profil/${userData?.nama_pengguna}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

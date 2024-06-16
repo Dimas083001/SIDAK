@@ -17,7 +17,7 @@ export default function TableSSR() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/laporan");
+        const response = await axios.get("https://sidak-ils-three.vercel.app/laporan");
         setData(response.data);
       } catch (error) {
         console.error(error);
@@ -32,7 +32,7 @@ export default function TableSSR() {
 
   const handleButtonUbahClick = async (nama_pengguna) => {
     try {
-      const response = await axios.get(`http://localhost:8000/akun/${nama_pengguna}`);
+      const response = await axios.get(`https://sidak-ils-three.vercel.app/akun/${nama_pengguna}`);
       const dataToEdit = response.data;
       router.push({
         pathname: `/admin/ssr/edit/`,
@@ -48,7 +48,7 @@ export default function TableSSR() {
     const confirmation = window.confirm("Apakah anda yakin ingin menghapus akun?");
     if (confirmation) {
       axios
-        .delete(`http://localhost:8000/akun/${nama_pengguna}`)
+        .delete(`https://sidak-ils-three.vercel.app/akun/${nama_pengguna}`)
         .then((response) => {
           if (response.status === 200) {
             setData(data.filter((item) => item.nama_pengguna !== nama_pengguna));

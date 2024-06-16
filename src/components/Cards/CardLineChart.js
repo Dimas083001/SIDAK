@@ -34,7 +34,7 @@ export default function CardLineChart() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('http://localhost:8000/peringkat_perwilayah');
+        const response = await fetch('https://sidak-ils-three.vercel.app/peringkat_perwilayah');
         const data = await response.json();
 
         const startMonthNum = monthMap[startMonth];

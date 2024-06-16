@@ -26,7 +26,7 @@ export default function InsertKader() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/data');
+      const response = await axios.get('https://sidak-ils-three.vercel.app/data');
       
       // Set kecamatan list
       setKecamatanList(response.data.kecamatan);
@@ -94,7 +94,7 @@ export default function InsertKader() {
     const confirmation = window.confirm("Apakah anda yakin ingin menambahkan data kader?");
     if (confirmation) {
       try {
-        const response = await axios.post('http://localhost:8000/kader', formData);
+        const response = await axios.post('https://sidak-ils-three.vercel.app/kader', formData);
         console.log(response.data); // Menampilkan respon dari server
         setFormData(initialFormData);
         router.push('/admin/kader/');

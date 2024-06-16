@@ -11,7 +11,7 @@ export default function NewPage({ color }) {
   const [loading, setLoading] = useState(false); // Tambahkan state loading
 
   useEffect(() => {
-    axios.get('http://localhost:8000/filelaporan')
+    axios.get('https://sidak-ils-three.vercel.app/filelaporan')
       .then(response => setFiles(response.data))
       .catch(error => console.error('Failed to fetch files:', error));
   }, []);
@@ -24,7 +24,7 @@ export default function NewPage({ color }) {
     const confirmation = window.confirm("Apakah anda yakin ingin menghapus laporan?");
     if (confirmation) {
       setLoading(true); // Set loading menjadi true saat proses penghapusan dimulai
-      axios.delete(`http://localhost:8000/delete-file/${id}`)
+      axios.delete(`https://sidak-ils-three.vercel.app/delete-file/${id}`)
         .then(response => {
           setFiles(files.filter(file => file.id !== id));
         })

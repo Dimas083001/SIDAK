@@ -116,7 +116,7 @@ export default function CardPieChart() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:8000/peringkat_perwilayah");
+        const response = await fetch("https://sidak-ils-three.vercel.app/peringkat_perwilayah");
         const result = await response.json();
         setApiData(result);
         

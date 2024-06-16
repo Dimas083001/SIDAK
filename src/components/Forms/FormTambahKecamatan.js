@@ -27,7 +27,7 @@ export default function FormTambahKecamatan() {
         alert("Please fill all the fields");
         return;
       }
-      await axios.post(`http://localhost:8000/kota/kecamatan`, kecamatan);
+      await axios.post(`https://sidak-ils-three.vercel.app/kota/kecamatan`, kecamatan);
       alert("Kecamatan added successfully");
       router.push(`/admin/kota/kecamatan?id_kota=${id_kota}`); // Redirect ke halaman daftar kecamatan
     } catch (error) {

@@ -26,7 +26,7 @@ export default function EditKader() {
     const fetchData = async () => {
       try {
         if (id) {
-          const response = await axios.get(`http://localhost:8000/kader/${id}`);
+          const response = await axios.get(`https://sidak-ils-three.vercel.app/kader/${id}`);
           const dataToEdit = response.data;
           setFormData({
             jenis_kader: dataToEdit.jenis_kader,
@@ -41,7 +41,7 @@ export default function EditKader() {
           });
         }
 
-        const response = await axios.get('http://localhost:8000/data');
+        const response = await axios.get('https://sidak-ils-three.vercel.app/data');
         
         // Set kecamatan list
         setKecamatanList(response.data.kecamatan);
@@ -103,7 +103,7 @@ export default function EditKader() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.put(`http://localhost:8000/kader/${id}`, formData);
+      const response = await axios.put(`https://sidak-ils-three.vercel.app/kader/${id}`, formData);
       if (response.status === 200) {
         alert("Data updated successfully");
         router.push("/admin/kader");

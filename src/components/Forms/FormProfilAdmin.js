@@ -17,7 +17,7 @@ export default function FormProfil() {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const response = await fetch(`http://localhost:8000/profiles/${localStorage.getItem('nama_pengguna')}`);
+                const response = await fetch(`https://sidak-ils-three.vercel.app/profiles/${localStorage.getItem('nama_pengguna')}`);
                 const data = await response.json();
                 const userProfile = JSON.parse(data.user); // Mengonversi string JSON menjadi objek
                 setProfile(userProfile);
@@ -33,7 +33,7 @@ export default function FormProfil() {
         const confirmation = window.confirm("Apakah anda yakin ingin mengubah profil?");
         if (confirmation) {
             try {
-                const response = await fetch(`http://localhost:8000/profiles/${localStorage.getItem('nama_pengguna')}`, {
+                const response = await fetch(`https://sidak-ils-three.vercel.app/profiles/${localStorage.getItem('nama_pengguna')}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',

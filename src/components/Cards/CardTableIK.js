@@ -15,7 +15,7 @@ export default function TableIK({ color }) {
   useEffect(() => {
     const fetchLaporan = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/total_laporan_sudah_ik_Perwilayah");
+        const response = await axios.get("https://sidak-ils-three.vercel.app/total_laporan_sudah_ik_Perwilayah");
         setLaporan(response.data);
       } catch (error) {
         console.error(error);
@@ -28,7 +28,7 @@ export default function TableIK({ color }) {
   useEffect(() => {
     const fetchBelumIKData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/menampilkan_status_ik");
+        const response = await axios.get("https://sidak-ils-three.vercel.app/menampilkan_status_ik");
         const dataBelumIK = response.data.pembagian_kota.total_belumik_by_city || [];
         
         // Separate data with known and unknown kota

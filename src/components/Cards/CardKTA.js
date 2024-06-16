@@ -18,7 +18,7 @@ export default function KTADisplay() {
 
     const fetchKader = async (id) => {
         try {
-            const response = await axios.get(`http://localhost:8000/kta/${id}`);
+            const response = await axios.get(`https://sidak-ils-three.vercel.app/kta/${id}`);
             setKader(response.data);
         } catch (error) {
             console.error('Error fetching KTA data:', error);
@@ -31,7 +31,7 @@ export default function KTADisplay() {
                 <div class="card-front">
                     <h2>KARTU TANDA ANGGOTA</h2>
                     <div class="photo">
-                        ${kader.fotoURL ? `<img src="http://localhost:8000${kader.fotoURL}" alt="Foto" />` : ''}
+                        ${kader.fotoURL ? `<img src="https://sidak-ils-three.vercel.app${kader.fotoURL}" alt="Foto" />` : ''}
                     </div>
                     <div class="text">
                         <p class="name">${kader.nama}</p>
@@ -152,7 +152,7 @@ export default function KTADisplay() {
                     <div className="bg-white shadow-md rounded p-8 m-4" style={{ width: '300px', height: '500px', backgroundImage: 'url(/img/KTA.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                         <h2 className="px-8 py-5 m-4 mt-8 text-lxl font-bold text-center">KARTU TANDA ANGGOTA</h2>
                         <div className="photo text-center my-4">
-                            {kader.fotoURL && <img src={`http://localhost:8000${kader.fotoURL}`} alt="Foto" className="mx-auto" style={{ width: '150px', height: '150px', borderRadius: '100%' }} />}
+                            {kader.fotoURL && <img src={`https://sidak-ils-three.vercel.app${kader.fotoURL}`} alt="Foto" className="mx-auto" style={{ width: '150px', height: '150px', borderRadius: '100%' }} />}
                         </div>
                         <div className="text-center mt-5">
                             <p className="font-bold">{kader.nama}</p>
