@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt, faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 export default function TableKecamatan() {
     const router = useRouter();
@@ -95,7 +95,7 @@ export default function TableKecamatan() {
                             </div>
                             <div className="flex justify-end mr-2">
                                 <button type="button" onClick={handleButtonTambahClick} className="bg-green-600 text-white font-medium py-1 px-3 rounded mr-3">
-                                    Tambah Kecamatan
+                                <i className="fas fa-plus-circle mr-2"></i> Tambah Kecamatan
                                 </button>
                             </div>
                         </div>
@@ -143,20 +143,20 @@ export default function TableKecamatan() {
                                         {item.nama_kecamatan}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">
-                                        <button
-                                            type="button"
-                                            onClick={() => handleButtonUbahClick(item.nama_kecamatan)}
-                                            className="bg-blueGray-700 text-white font-bold py-1 px-3 rounded mr-2"
-                                        >
-                                            Ubah
-                                        </button>
-                                        <button
-                                            type="button"
-                                            onClick={() => handleButtonHapusClick(item.nama_kecamatan)}
-                                            className="bg-red-700 text-white font-bold py-1 px-3 rounded mr-2"
-                                        >
-                                            Hapus
-                                        </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => handleButtonUbahClick(item.nama_kecamatan)}
+                                        className="bg-blueGray-700 hover:bg-blueGray-900 text-white font-bold py-1 px-3 rounded mr-2"
+                                    >
+                                        <FontAwesomeIcon icon={faEdit} className="mr-1" /> Ubah
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => handleButtonHapusClick(item.nama_kecamatan)}
+                                        className="bg-red-700 hover:bg-red-900 text-white font-bold py-1 px-3 rounded mr-2"
+                                    >
+                                        <FontAwesomeIcon icon={faTrashAlt} className="mr-1" /> Hapus
+                                    </button>
                                     </td>
                                 </tr>
                             ))}

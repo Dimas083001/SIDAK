@@ -4,11 +4,9 @@ const db = mysql.createPool({
   host: "localhost",
   user: "root",
   password: "",
-<<<<<<< HEAD
   database: "database_ils",
-=======
-  database: "database_ils"
->>>>>>> dev
+  port: 3308,
+
 });
 
 db.getConnection().then((connection) => {

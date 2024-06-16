@@ -92,36 +92,35 @@ export default function TableIK({ color }) {
 
   return (
     <>
-
-<div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-  <div className="overflow-x-auto">
-    <div className="rounded-t bg-white mb-1 px-6 py-6 border-2">
-      <div className="flex justify-between items-center">
-        <div className="flex items-center justify-left">
-          <FontAwesomeIcon icon={faCircleChevronLeft} className="cursor-pointer text-green-700 mr-2" onClick={handleBackClick} style={{ fontSize: '2rem' }} />
-          <h6 className="text-green-700 text-xl font-bold">
-            Laporan Belum IK
-          </h6>
-        </div>
-              <div className="relative w-full px-3 max-w-full flex-grow flex-1 text-right">
-          <div className="inline-block">
-            <select
-              id="filterKota"
-              name="filterKota"
-              className="mt-1 block w-full py-2 px-8 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              value={filterKota}
-              onChange={handleFilterChange}
-            >
-              <option value="All">All</option>
-              {kotaData.map((kota) => (
-                <option key={kota.nama} value={kota.nama}>{kota.nama}</option>
-              ))}
-            </select>
+    <div className="relative flex flex-col min-w-0 break-words w-full mb-4 shadow-lg rounded-lg bg-white border-1">
+      <div className="overflow-x-auto">
+        <div className="rounded-t bg-white w-full mb-1 px-6 py-6 border-2">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center justify-left">
+              <FontAwesomeIcon icon={faCircleChevronLeft} className="cursor-pointer text-green-700 mr-2" onClick={handleBackClick} style={{ fontSize: '2rem' }} />
+              <h6 className="text-green-700 text-xl font-bold">
+                Laporan Belum IK
+              </h6>
+            </div>
+                  <div className="relative w-full px-3 max-w-full flex-grow flex-1 text-right">
+              <div className="inline-block">
+                <select
+                  id="filterKota"
+                  name="filterKota"
+                  className="mt-1 block w-full py-2 px-8 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  value={filterKota}
+                  onChange={handleFilterChange}
+                >
+                  <option value="All">All</option>
+                  {kotaData.map((kota) => (
+                    <option key={kota.nama} value={kota.nama}>{kota.nama}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-          <table className="items-center w-full bg-white border-collapse">
+          <table className="block w-full overflow-x-auto">
             <thead className="bg-blueGray-50">
               <tr>
                 <th className="px-6 py-3 text-center text-xs font-bold text-green-700 uppercase tracking-wider">
@@ -190,9 +189,13 @@ export default function TableIK({ color }) {
         </div>
       </div>
       <div className="flex justify-end mr-2">
-        <a type="button" onClick={handleButtonExportClick} className="bg-blueGray-700 text-white font-medium py-1 px-3 rounded mr-2">
-          Export Excel
-        </a>
+      <button
+        type="button"
+        onClick={handleButtonExportClick}
+        className="bg-blueGray-700 text-white font-medium py-1 px-3 rounded mr-2"
+      >
+        <i className="fas fa-file-excel mr-2"></i> Export Excel
+      </button>
       </div>
     </>
   );

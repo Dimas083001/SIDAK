@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from 'next/router';
+import "@fortawesome/fontawesome-free/css/all.css";
 const axios = require("axios");
 
 export default function TableIK({ color }) {
@@ -80,13 +81,17 @@ export default function TableIK({ color }) {
             <div className="flex justify-between items-center">
               <div className="relative w-full px-3 max-w-full flex-grow flex-1">
                 <h6 className="text-green-700 text-xl font-bold">
-                  Belum IK
+                  Belum Investigasi Kontak
                 </h6>
               </div>
               <div className="flex justify-end mr-2">
-                <button type="button" onClick={handleButtonDetailClick} className="bg-orange-500 text-white font-medium py-1 px-3 rounded mr-2">
-                  Detail Belum IK
-                </button>
+              <button
+                type="button"
+                onClick={handleButtonDetailClick}
+                className="bg-orange-500 text-white font-medium py-1 px-3 rounded mr-2"
+              >
+                <i className="fas fa-info-circle mr-2"></i> Detail Belum IK
+              </button>
               </div>
             </div>
           </div>

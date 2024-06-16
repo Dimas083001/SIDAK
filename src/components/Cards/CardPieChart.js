@@ -18,10 +18,11 @@ const months = [
 ];
 
 export default function CardPieChart() {
+  const currentYear = new Date().getFullYear();
   const [selectedRegion, setSelectedRegion] = useState("All");
   const [startMonth, setStartMonth] = useState("");
   const [endMonth, setEndMonth] = useState("");
-  const [year, setYear] = useState("");
+  const [year, setYear] = useState(currentYear);
   const [apiData, setApiData] = useState([]);
   const [uniqueRegions, setUniqueRegions] = useState([]);
   const [totalLaporan, setTotalLaporan] = useState(0); // Tambahkan state untuk total laporan
@@ -260,4 +261,3 @@ export default function CardPieChart() {
     </>
   );
 }
-

@@ -1,6 +1,8 @@
 // Frontend - FormTambahKecamatan.js
 import React, { useState } from "react";
 import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
 
 export default function FormTambahKecamatan() {
@@ -75,19 +77,21 @@ export default function FormTambahKecamatan() {
               </div>
             </div>
             <div className="text-center flex justify-end mr-3 mt-3 w-full">
-              <button
-                className="bg-green-700 active:bg-blueGray-600 text-white font-bold text-sm px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 ml-auto"
-                type="submit"
-              >
-                Simpan
-              </button>
-              <button
-                className="bg-blueGray-400 active:bg-blueGray-600 text-white font-bold text-sm px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                type="button"
-                onClick={handleButtonKembaliClick}
-              >
-                Batal 
-              </button>
+            <button
+              className="bg-green-700 active:bg-blueGray-600 text-white font-bold text-sm px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 ml-auto flex items-center"
+              type="submit"
+            >
+              <FontAwesomeIcon icon={faSave} className="mr-2" /> Simpan
+            </button>
+
+            {/* Tombol Batal dengan ikon */}
+            <button
+              className="bg-blueGray-400 active:bg-blueGray-600 text-white font-bold text-sm px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 flex items-center"
+              type="button"
+              onClick={handleButtonKembaliClick}
+            >
+              <FontAwesomeIcon icon={faTimes} className="mr-2" /> Batal
+            </button>
             </div>
           </form>
         </div>

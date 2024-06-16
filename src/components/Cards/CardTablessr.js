@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import "@fortawesome/fontawesome-free/css/all.css";
+
 const axios = require("axios");
 
 export default function TableSSR() {
@@ -83,13 +85,13 @@ export default function TableSSR() {
                 </h6>
               </div>
               <div className="flex justify-end mr-2">
-                <button
-                  type="button"
-                  onClick={handleButtonTambahClick}
-                  className="bg-green-600 text-white font-medium py-1 px-3 rounded mr-8"
-                >
-                  Tambah Akun
-                </button>
+              <button
+                type="button"
+                onClick={handleButtonTambahClick}
+                className="bg-green-600 hover:bg-green-800 text-white font-medium py-1 px-3 rounded mr-8"
+              >
+                <i className="fas fa-plus"></i> Tambah Akun
+              </button>
               </div>
             </div>
           </div>
@@ -156,20 +158,20 @@ export default function TableSSR() {
                     {item.role}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">
-                    <button
-                      type="button"
-                      onClick={() => handleButtonUbahClick(item.nama_pengguna)}
-                      className="bg-blueGray-700 text-white font-bold py-1 px-3 rounded mr-2"
-                    >
-                      Ubah
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => handleButtonHapusClick(item.nama_pengguna)}
-                      className="bg-red-700 text-white font-bold py-1 px-3 rounded mr-2"
-                    >
-                      Hapus
-                    </button>
+                  <button
+                    type="button"
+                    onClick={() => handleButtonUbahClick(item.nama_pengguna)}
+                    className="bg-blueGray-700 hover:bg-blueGray-900 text-white font-bold py-1 px-3 rounded mr-2"
+                  >
+                    <i className="fas fa-edit"></i> Ubah
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleButtonHapusClick(item.nama_pengguna)}
+                    className="bg-red-700 hover:bg-red-900 text-white font-bold py-1 px-3 rounded mr-2"
+                  >
+                    <i className="fas fa-trash-alt"></i> Hapus
+                  </button>
                   </td>
                 </tr>
               ))}

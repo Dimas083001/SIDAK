@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from 'next/router';
+import "@fortawesome/fontawesome-free/css/all.css";
 const axios = require("axios");
 
 export default function TableLaporan({ color }) {
@@ -55,18 +56,26 @@ export default function TableLaporan({ color }) {
                 </h6>
               </div>
               <div className="flex justify-end mr-2">
-                <button type="button" onClick={handleButtonTambahClick} className="bg-green-600 text-white font-medium py-1 px-3 rounded mr-2">
-                  Tambah Laporan
-                </button>
-                <button type="button" onClick={handleButtonDetailClick} className="bg-orange-500 text-white font-medium py-1 px-3 rounded mr-2">
-                  Detail Laporan
-                </button>
+              <button
+                type="button"
+                onClick={handleButtonTambahClick}
+                className="bg-green-600 text-white font-medium py-1 px-3 rounded mr-2"
+              >
+                <i className="fas fa-plus-circle mr-2"></i> Tambah Laporan
+              </button>
+              <button
+                type="button"
+                onClick={handleButtonDetailClick}
+                className="bg-orange-500 text-white font-medium py-1 px-3 rounded mr-2"
+              >
+                <i className="fas fa-info-circle mr-2"></i> Detail Laporan
+              </button>
               </div>
             </div>
           </div>
 
           {/* Tabel Akun SSR */}
-          <table className="items-center w-full bg-white border-collapse">
+          <table className="block w-full overflow-x-auto">
             <thead className="bg-blueGray-50">
               <tr>
                 <th
@@ -84,7 +93,7 @@ export default function TableLaporan({ color }) {
                   Nama Kader
                 </th>
                 <th
-                  style={{ width: "120px" }}
+                  style={{ width: "200px" }}
                   scope="col"
                   className="px-6 py-3 text-center text-xs font-bold text-green-700 uppercase tracking-wider"
                 >
@@ -131,7 +140,7 @@ export default function TableLaporan({ color }) {
             {[...laporan, ...currentItems].map((item, index) => (
                 <tr key={index}>
                   <td style={{ width: "40px" }} className="px-6 py-4 whitespace-nowrap text-center text-sm font-semibold text-gray-900">{indexOfFirstItem + index + 1}</td>
-                  <td style={{ width: "120px" }} className="px-7 py-4 whitespace-nowrap text-center text-sm text-gray-800">{item.Nama_Kader}</td>
+                  <td style={{ width: "200px" }} className="px-7 py-4 whitespace-nowrap text-center text-sm text-gray-800">{item.Nama_Kader}</td>
                   <td style={{ width: "120px" }} className="px-7 py-4 whitespace-nowrap text-center text-sm text-gray-800">{item.Kabupaten_Kota}</td>
                   <td style={{ width: "120px" }} className="px-7 py-4 whitespace-nowrap text-center text-sm text-gray-800">{item.Kecamatan}</td>
                   <td style={{ width: "60px" }} className="px-10 py-4 whitespace-nowrap text-center text-sm text-gray-800">{item.TPT}</td>

@@ -22,7 +22,6 @@ export default function CardPageVisits() {
   const [endMonth, setEndMonth] = useState('');
   const [year, setYear] = useState('');
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -88,64 +87,46 @@ export default function CardPageVisits() {
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-4 shadow-lg rounded-lg bg-white border-1">
         <div className="rounded-t mb-0 px-4 py-3 border-0 bg-transparent">
-          <div className="flex flex-wrap items-center">
-            <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-              <h3 className="font-semibold text-base text-xl text-blueGray-700">
+          <div className="flex flex-wrap items-center justify-between">
+            <div className="w-full px-4 flex-1">
+              <h3 className="font-semibold text-base text-xl text-blueGray-700 mt-2 mb-4">
                 Total Laporan Perwilayah
               </h3>
             </div>
-            <div className="relative w-full px-4 max-w-full mt-2 flex-grow flex-1 text-right">
-              <div className="inline-flex">
-                <select
-                  className="bg-indigo-100 text-black px-3 py-1 mr-2 bg-white border-gray-300 rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                  value={startMonth}
-                  onChange={(e) => setStartMonth(e.target.value)}
-                >
-                  <option value="">Mulai Bulan</option> 
-                  {months.map(month => (
-                    <option key={month.value} value={month.value}>
-                      {month.label}
-                    </option>
-                  ))}
-                </select>
-                <select
-                  className="bg-indigo-100 text-black px-3 py-1 mr-2 bg-white border-gray-300 rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                  value={endMonth}
-                  onChange={(e) => setEndMonth(e.target.value)}
-                >
-                  <option value="">Akhir Bulan</option>
-                  {months.map(month => (
-                    <option key={month.value} value={month.value}>
-                      {month.label}
-                    </option>
-                  ))}
-                </select>
-                <input
-                  type="number"
-                  placeholder="Tahun"
-                  className="bg-indigo-100 text-black px-3 py-1 mr-2 bg-white border-gray-300 rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                  value={year}
-                  onChange={(e) => setYear(e.target.value)}
-                />
-                {/* <button
-                  className={`bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 ${filter === 'top5' && 'bg-indigo-600'}`}
-                  onClick={() => setFilter('top5')}
-                >
-                  Top 5
-                </button>
-                <button
-                  className={`bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 ${filter === 'top10' && 'bg-indigo-600'}`}
-                  onClick={() => setFilter('top10')}
-                >
-                  Top 10
-                </button> */}
-                {/* <button
-                  className={`bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 ${filter === 'all' && 'bg-indigo-600'}`}
-                  onClick={() => setFilter('all')}
-                >
-                  Lihat Semua
-                </button> */}
-              </div>
+            </div>
+            <div className="w-full px-4 max-w-full mb-2 flex-grow flex-1 text-left">
+            <div className="inline-flex flex-wrap justify-start">
+              <select
+                className="bg-indigo-100 text-black px-3 py-1 mr-2 mb-2 sm:mb-0 bg-white border-gray-300 rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                value={startMonth}
+                onChange={(e) => setStartMonth(e.target.value)}
+              >
+                <option value="">Mulai Bulan</option>
+                {months.map(month => (
+                  <option key={month.value} value={month.value}>
+                    {month.label}
+                  </option>
+                ))}
+              </select>
+              <select
+                className="bg-indigo-100 text-black px-2 py-1 mr-2 mb-2 sm:mb-0 bg-white border-gray-300 rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                value={endMonth}
+                onChange={(e) => setEndMonth(e.target.value)}
+              >
+                <option value="">Akhir Bulan</option>
+                {months.map(month => (
+                  <option key={month.value} value={month.value}>
+                    {month.label}
+                  </option>
+                ))}
+              </select>
+              <input
+                type="number"
+                placeholder="Tahun"
+                className="bg-indigo-100 text-black px-3 py-1 mr-2 mb-2 sm:mb-0 bg-white border-gray-300 rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
+              />
             </div>
           </div>
         </div>

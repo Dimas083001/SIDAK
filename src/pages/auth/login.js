@@ -44,12 +44,13 @@ export default function Login() {
       <div className="container mx-auto px-4 h-full">
         <div className="flex content-center items-center justify-center h-full">
           <div className="w-full lg:w-4/12 px-4">
-            <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+            <div className="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded-lg bg-blueGray-100 border-0 mt-20">
               <div className="rounded-t mb-0 px-6 py-3">
                 <div className="text-center mb-3">
                   <img src="/img/brand/logo-ils.png" alt="Logo" className="w-20 h-10 mx-auto mb-3" />
+                  <p className="text-4xl font-bold text-blueGray-700">SIDAK</p>
+                  <p className="text-xl font-bold text-blueGray-600 mt-2">SISTEM DATA KADER</p>
                 </div>
-                <hr className="mt-6 border-b-1 border-blueGreen-900" />
               </div>
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                 <form onSubmit={handleLogin}>

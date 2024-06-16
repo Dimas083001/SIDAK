@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import "@fortawesome/fontawesome-free/css/all.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faUser, faFileLines, faAngleRight} from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faUser, faFileLines, faAngleRight, faMapMarked, faTable, faDoorClosed, faPowerOff} from '@fortawesome/free-solid-svg-icons';
 
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState(true); // Ubah nilai awal menjadi true
@@ -61,7 +61,7 @@ export default function Sidebar() {
           } md:flex md:flex-col md:items-stretch px-6 py-6 md:opacity-100 md:relative md:mt-5 md:shadow-none shadow absolute top-0 left-1 right-1 overflow-y-auto overflow-x-hidden h-auto items-center flex-10 rounded bg-white md:transition-all md:duration-300 md:ease-in-out`}
         >
           {/* Divider */}
-          <hr className="my-6 md:w-full " />
+          <hr className="my-4 md:w-full " />
 
           {/* Menu */}
           <ul className="md:flex-col md:min-w-full flex flex-col list-none">
@@ -69,7 +69,7 @@ export default function Sidebar() {
               <Link
                 href="/admin/dashboard/"
                 className={
-                  "text-sm uppercase py-3 font-bold block " +
+                  "text-base uppercase py-3 font-bold block " +
                   (router.pathname.indexOf("/admin/dashboard") !== -1
                     ? "text-green-500 hover:text-green-600"
                     : "text-blueGray-700 hover:text-blueGray-500")
@@ -77,12 +77,12 @@ export default function Sidebar() {
               >
                 <i>
                   <FontAwesomeIcon
-                    icon={faHouse}
+                    icon={faHouse} style={{ fontSize: '1.5rem' }}
                     className={
-                      "mr- text-sm " +
+                      "mr-3 text-sm  " +
                       (router.pathname.indexOf("/admin/dashboard") !== -1
                         ? "opacity-75"
-                        : "text-blueGray-300")
+                        : "text-blueGray-700")
                     }
                   />
                 </i>{" "}
@@ -94,7 +94,7 @@ export default function Sidebar() {
               <Link
                 href="/admin/ssr/"
                 className={
-                  "text-sm uppercase py-3 font-bold block " +
+                  "text-base uppercase py-3 font-bold block " +
                   (router.pathname.indexOf("/admin/ssr") !== -1
                     ? "text-green-500 hover:text-green-600"
                     : "text-blueGray-700 hover:text-blueGray-500")
@@ -102,12 +102,12 @@ export default function Sidebar() {
 
                 <i>
                   <FontAwesomeIcon
-                  icon={faUser}
+                  icon={faUser} style={{ fontSize: '1.5rem' }}
                   className={
-                    "mr-2 text-sm " +
+                    "mr-5 text-sm " +
                     (router.pathname.indexOf("/admin/ssr") !== -1
                       ? "opacity-75"
-                      : "text-blueGray-300")
+                      : "text-blueGray-700")
                   }
                   />
                 </i>{" "}
@@ -119,28 +119,31 @@ export default function Sidebar() {
               <Link
                 href="/admin/kader/"
                 className={
-                  "text-sm uppercase py-3 font-bold block " +
+                  "text-base uppercase py-3 font-bold block " +
                   (router.pathname.indexOf("/admin/kader") !== -1
                     ? "text-green-500 hover:text-green-600"
                     : "text-blueGray-700 hover:text-blueGray-500")
                 }>
 
-                <i
+                <i>
+                  <FontAwesomeIcon
+                  icon={faTable} style={{ fontSize: '1.5rem' }}
                   className={
-                    "fas fa-table mr-2 text-sm " +
+                    "mr-4 text-sm " +
                     (router.pathname.indexOf("/admin/kader") !== -1
                       ? "opacity-75"
-                      : "text-blueGray-300")
+                      : "text-blueGray-700")
                   }
-                ></i>{" "}Data Kader
+                  />
+                </i>{" "} Data Kader
               </Link>
-            </li>
+            </li>  
 
             <li className="items-center">
               <Link
                 href="/admin/laporan/"
                 className={
-                  "text-sm uppercase py-3 font-bold block " +
+                  "text-base uppercase py-3 font-bold block " +
                   (router.pathname.indexOf("/admin/laporan") !== -1
                     ? "text-green-500 hover:text-green-600"
                     : "text-blueGray-700 hover:text-blueGray-500")
@@ -148,12 +151,12 @@ export default function Sidebar() {
 
                 <i>
                     <FontAwesomeIcon
-                      icon={faFileLines}
+                      icon={faFileLines} style={{ fontSize: '1.5rem' }}
                       className={
-                        "mr-2 text-sm " +
+                        "mr-6 text-sm " +
                         (router.pathname.indexOf("/admin/laporan") !== -1
                           ? "opacity-75"
-                          : "text-blueGray-300")
+                          : "text-blueGray-700")
                       }
                     />
                   </i>{" "}
@@ -165,28 +168,34 @@ export default function Sidebar() {
               <Link
                 href="/admin/kota/"
                 className={
-                  "text-sm uppercase py-3 font-bold block " +
+                  "text-base uppercase py-3 font-bold block " +
                   (router.pathname.indexOf("/admin/kota") !== -1
                   ? "text-green-500 hover:text-green-600"
                   : "text-blueGray-700 hover:text-blueGray-500")
                 }>
 
-                <i
-                  className={
-                    "fas fa-map-marked mr-2 text-sm " +
-                    (router.pathname.indexOf("/admin/kota") !== -1
-                    ? "opacity-75"
-                      : "text-blueGray-300")
-                  }
-                ></i>{" "}Sebaran Wilayah
+                <i>
+                    <FontAwesomeIcon
+                      icon={faMapMarked} style={{ fontSize: '1.5rem' }}
+                      className={
+                        "mr-4 text-sm " +
+                        (router.pathname.indexOf("/admin/kota") !== -1
+                          ? "opacity-75"
+                          : "text-blueGray-700")
+                      }
+                    />
+                  </i>{" "} Wilayah
               </Link>
             </li>
 
+            {/* Divider */}
+          <hr className="my-4 md:w-full " />
+
             <li className="items-center">
               <button
-                onClick={handleLogout}
+                onClick={handleLogout} 
                   className={
-                    "text-sm uppercase py-3 font-bold block " +
+                    "text-base uppercase py-3 font-bold block " +
                     (router.pathname.indexOf("/auth/login") !== -1
                       ? "text-green-500 hover:text-green-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
@@ -194,18 +203,19 @@ export default function Sidebar() {
               >
                 <i>
                   <FontAwesomeIcon
-                  icon={faAngleRight}
+                  icon={faPowerOff} style={{ fontSize: '1.5rem' }}
                   className={
-                    "mr-2 text-sm " +
+                    "mr-4 text-base " +
                     (router.pathname.indexOf("/auth/login") !== -1
                       ? "opacity-75"
-                      : "text-blueGray-300")
+                      : "text-blueGray-700")
                   }
                   />
                 </i>{" "}
                 Keluar
               </button>
             </li>
+            <hr className="my-4 md:w-full " />
           </ul>
         </div>
     </nav>

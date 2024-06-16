@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import '@fortawesome/fontawesome-free/css/all.css';
 
 export default function TableDK() {
   const [filterProvinsi, setFilterProvinsi] = useState("All");
@@ -390,7 +391,7 @@ export default function TableDK() {
           </div>
         </div>
 
-        <table className="items-center w-full bg-white border-collapse">
+        <table className="block w-full overflow-x-auto">
           <thead className="bg-blueGray-50">
             <tr>
               <th className="px-6 py-3 text-center text-xs font-bold text-green-700 uppercase tracking-wider">
@@ -444,16 +445,18 @@ export default function TableDK() {
         {/* <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.nama_provinsi}</td> */}
         <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.status}</td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-          <button
-              onClick={() => handleButtonUnggahfoto(kader.id)}
-              className="ml-2 mr-2 bg-blueGray-700 hover:bg-yellow-700 text-white font-bold py-1 px-4 rounded"
-            >
-              Unggah Foto
-          </button>
-          <button onClick={() => handleButtonKTAClick(kader.id)} className="bg-yellow-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded"
-            >
-              Lihat KTA
-          </button>
+        <button
+          onClick={() => handleButtonUnggahfoto(kader.id)}
+          className="ml-2 mr-2 bg-blueGray-700 hover:bg-yellow-700 text-white font-bold py-1 px-4 rounded"
+        >
+          <i className="fas fa-upload"></i> Unggah Foto
+        </button>
+        <button 
+          onClick={() => handleButtonKTAClick(kader.id)} 
+          className="bg-yellow-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded"
+        >
+          <i className="fas fa-id-card"></i> Lihat KTA
+        </button>
         </td>
         </tr>
               ))}

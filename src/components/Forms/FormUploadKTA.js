@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faSave, faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 export default function FormUploadKTA() {
     const router = useRouter();
@@ -89,7 +89,7 @@ export default function FormUploadKTA() {
         <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
             <div className="overflow-x-auto">
             <div className="flex justify-between items-center px-6 py-4 bg-white border-b-2">
-            <FontAwesomeIcon icon={faCircleChevronLeft} className="cursor-pointer text-green-700 text-xl mr-2" onClick={handleButtonBatalClick} />
+            <FontAwesomeIcon icon={faCircleChevronLeft} className="cursor-pointer text-green-700 text-xl mr-2" onClick={handleButtonBatalClick}style={{ fontSize: '2rem' }} />
             <h2 className="text-2xl font-bold text-center flex-grow ">Form Upload Foto KTA</h2>
             <div className="w-8"></div> {/* Placeholder untuk memberikan ruang kosong seukuran ikon */}
         </div>
@@ -97,7 +97,7 @@ export default function FormUploadKTA() {
           <div className="flex justify-between items-center">
                         <div className="relative w-full px-3 max-w-full flex-grow flex-1"
                  style={{ backgroundImage: "url('/depan.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                <h1 className="text-2xl font-bold text-center px-8 pt-4 pb-8 mb-4 mt-4">Form ID Card</h1>
+                <h1 className="text-2xl font-bold text-center px-8 pt-4 pb-8 mb-4 mt-4">Form Data</h1>
                 {errorMessage && (
                     <div className="text-red-500 text-sm mb-4">{errorMessage}</div>
                 )}
@@ -142,18 +142,18 @@ export default function FormUploadKTA() {
                         />
                     </div>
                 </form>
-                <div className="flex items-center justify-center mt-4 space-x-4">
-                    <button
-                        className="bg-blueGray-400 hover:bg-yellow-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline"
-                        onClick={handleButtonBatalClick}
+                <div className="flex items-center justify-center mt-4 space-x-4 text-xs ">
+                <button
+                    className="bg-green-700 hover:bg-green-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline"
+                    onClick={handleSaveClick}
                     >
-                        Batal
+                    <FontAwesomeIcon icon={faSave} className="mr-2 item-center" /> Simpan
                     </button>
-                    <button
-                        className="bg-green-700 hover:bg-green-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline"
-                        onClick={handleSaveClick}
+                <button
+                    className="bg-blueGray-400 hover:bg-yellow-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline"
+                    onClick={handleButtonBatalClick}
                     >
-                        Simpan
+                    <FontAwesomeIcon icon={faTimes} className="mr-2 item-center" /> Batal
                     </button>
                 </div>
             </div>

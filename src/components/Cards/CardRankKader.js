@@ -23,9 +23,7 @@ export default function CardPageVisits() {
   const [year, setYear] = useState('');
   const [displayedDataCount, setDisplayedDataCount] = useState(5);
 
-
   useEffect(() => {
-    // Fetch data from API
     const fetchData = async () => {
       try {
         const response = await fetch('http://localhost:8000/peringkat_kader');
@@ -41,18 +39,17 @@ export default function CardPageVisits() {
 
   const filteredData = () => {
     let filtered = data;
-  
+
     if (startMonth && endMonth && year) {
       const startDate = new Date(year, startMonth - 1);
       const endDate = new Date(year, endMonth - 1);
-  
+
       filtered = filtered.filter(item => {
         const itemDate = new Date(item.Tahun, item.Bulan - 1);
         return itemDate >= startDate && itemDate <= endDate;
       });
     }
-  
-    // Mengelompokkan data berdasarkan Nama_Kader, Kabupaten_Kota, Kecamatan, Tahun
+
     const groupedData = {};
     filtered.forEach(item => {
       const key = `${item.Nama_Kader}-${item.Kabupaten_Kota}-${item.Kecamatan}-${item.Tahun}`;
@@ -65,10 +62,9 @@ export default function CardPageVisits() {
       groupedData[key].Ternotifikasi += parseInt(item.Ternotifikasi, 10) || 0;
       groupedData[key].Total_Laporan += parseInt(item.Total_Laporan, 10) || 0;
     });
-  
-    // Mengonversi objek kembali menjadi array
+
     const finalData = Object.values(groupedData);
-  
+
     switch (filter) {
       case 'top5':
         return finalData.slice(0, 5);
@@ -76,24 +72,22 @@ export default function CardPageVisits() {
         return finalData.slice(0, 10);
       case 'all':
       default:
-        return finalData.slice(0, displayedDataCount); // Menggunakan displayedDataCount sebagai batasan
+        return finalData.slice(0, displayedDataCount);
     }
   };
 
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-        <div className="rounded-t mb-0 px-4 py-3 border-0">
-          <div className="flex flex-wrap items-center">
-            <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-              <h3 className="font-semibold text-base text-xl text-blueGray-700">
-                Pemeringkatan Kader
+      <div className="relative flex flex-col min-w-0 break-words w-full mb-4 shadow-lg rounded-lg bg-white border-1">
+        <div className="rounded-t mb-0 px-4 py-3 border-0 bg-transparent">
+          <div className="flex flex-wrap items-center justify-between">
+            <div className="w-full px-4 flex-1">
+              <h3 className="font-semibold text-base text-xl text-blueGray-700 mt-2 mb-4">
+                Total Laporan Perwilayah
               </h3>
-            </div>
-            <div className="relative w-full px-4 max-w-full mt-2 flex-grow flex-1 text-right">
-              <div className="inline-flex ">
+              <div className="inline-flex flex-wrap justify-start">
                 <select
-                  className="bg-indigo-100 text-black px-3 py-1 mr-2 bg-white border-gray-300 rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="bg-indigo-100 text-black px-3 py-1 mr-2 mb-2 sm:mb-0 bg-white border-gray-300 rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   value={startMonth}
                   onChange={(e) => setStartMonth(e.target.value)}
                 >
@@ -101,11 +95,11 @@ export default function CardPageVisits() {
                   {months.map(month => (
                     <option key={month.value} value={month.value}>
                       {month.label}
-                    </option>
+                    </option>    
                   ))}
                 </select>
                 <select
-                  className="bg-indigo-100 text-black px-3 py-1 mr-2 bg-white border-gray-300 rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="bg-indigo-100 text-black px-2 py-1 mr-2 mb-2 sm:mb-0 bg-white border-gray-300 rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   value={endMonth}
                   onChange={(e) => setEndMonth(e.target.value)}
                 >
@@ -119,39 +113,36 @@ export default function CardPageVisits() {
                 <input
                   type="number"
                   placeholder="Tahun"
-                  className="bg-indigo-100 text-black px-3 py-1 mr-2 bg-white border-gray-300 rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="bg-indigo-100 text-black px-3 py-1 mr-2 mb-2 sm:mb-0 bg-white border-gray-300 rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   value={year}
                   onChange={(e) => setYear(e.target.value)}
                 />
-              </div>  
-              <div className="relative w-full items-center mt-2 flex-grow flex-1 text-right">
-                <button
-                  className={`bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 ${filter === 'top5' && 'bg-indigo-600'}`}
-                  onClick={() => setFilter('top5')}
-                >
-                  Top 5
-                </button>
-                <button
-                  className={`bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 ${filter === 'top10' && 'bg-indigo-600'}`}
-                  onClick={() => setFilter('top10')}
-                >
-                  Top 10
-                </button>
-                <button
-                  className={`bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 ${filter === 'all' && 'bg-indigo-600'}`}
-                  onClick={() => {
-                    setFilter('all'); // Set filter ke 'all' saat tombol diklik
-                    setDisplayedDataCount(data.length); // Atur displayedDataCount sesuai dengan panjang data
-                  }}
-                >
-                  Lihat Semua
-                </button>
               </div>
-            </div> 
-          </div>
-        </div>       
+              <button
+                className={`bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 ${filter === 'top5' && 'bg-indigo-600'}`}
+                onClick={() => setFilter('top5')}
+              >
+                Top 5
+              </button>
+              <button
+                className={`bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 ${filter === 'top10' && 'bg-indigo-600'}`}
+                onClick={() => setFilter('top10')}
+              >
+                Top 10
+              </button>
+              <button
+                className={`bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 ${filter === 'all' && 'bg-indigo-600'}`}
+                onClick={() => {
+                  setFilter('all');
+                  setDisplayedDataCount(data.length);
+                }}
+              >
+                Lihat Semua
+              </button>
+            </div>
+            </div>
+        </div>
         <div className="block w-full overflow-x-auto">
-          {/* Projects table */}
           <table className="items-center w-full bg-transparent border-collapse">
             <thead>
               <tr>
@@ -170,7 +161,7 @@ export default function CardPageVisits() {
                 <th className="px-2 bg-blueGray-50 text-center text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                   TPT
                 </th>
-                <th className="px-2 bg-blueGray-50 text-center text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                <th className="px-2 bg-blueGray-50 text-center text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs                 whitespace-nowrap font-semibold text-left">
                   IKRT
                 </th>
                 <th className="px-2 bg-blueGray-50 text-center text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
@@ -185,7 +176,7 @@ export default function CardPageVisits() {
               </tr>
             </thead>
             <tbody>
-            {filteredData().map((item, index) => (
+              {filteredData().map((item, index) => (
                 <tr key={index} className={index < 3 ? 'bg-blueGray-200 font-bold' : ''}>
                   <td className="border-t-0 px-2 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2 text-center">
                     {index + 1}
@@ -219,8 +210,7 @@ export default function CardPageVisits() {
             </tbody>
           </table>
         </div>
-      </div>
+        </div>
     </>
   );
 }
-

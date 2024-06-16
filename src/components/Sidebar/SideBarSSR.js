@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import "@fortawesome/fontawesome-free/css/all.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faUser, faFileLines, faAngleRight} from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faUser, faFileLines, faAngleRight, faTable, faPowerOff} from '@fortawesome/free-solid-svg-icons';
 
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState(true); // Ubah nilai awal menjadi true
@@ -69,7 +69,7 @@ export default function Sidebar() {
               <Link
                 href="/ssr/dashboard/"
                 className={
-                  "text-sm uppercase py-3 font-bold block " +
+                  "ext-base uppercase py-3 font-bold block " +
                   (router.pathname.indexOf("/ssr/dashboard") !== -1
                     ? "text-green-500 hover:text-green-600"
                     : "text-blueGray-700 hover:text-blueGray-500")
@@ -77,12 +77,12 @@ export default function Sidebar() {
               >
                 <i>
                   <FontAwesomeIcon
-                  icon={faHouse}
+                  icon={faHouse} style={{ fontSize: '1.5rem' }}
                   className={
-                    "mr-2 text-sm" +
+                    "mr-3 text-sm " +
                     (router.pathname.indexOf("/ssr/dashboard") !== -1
                       ? "opacity-75"
-                      : "text-blueGray-300")
+                      : "text-blueGray-700")
                   }
                   />
                 </i>{" "}
@@ -94,27 +94,34 @@ export default function Sidebar() {
               <Link
                 href="/ssr/kader/"
                 className={
-                  "text-sm uppercase py-3 font-bold block " +
+                  "text-base uppercase py-3 font-bold block " +
                   (router.pathname.indexOf("/ssr/kader") !== -1
                     ? "text-green-500 hover:text-green-600"
                     : "text-blueGray-700 hover:text-blueGray-500")
                 }>
 
-                <i
+<i>
+                  <FontAwesomeIcon
+                  icon={faTable} style={{ fontSize: '1.5rem' }}
                   className={
-                    "fas fa-table mr-2 text-sm " +
+                    "mr-4 text-base " +
                     (router.pathname.indexOf("/ssr/kader") !== -1
                       ? "opacity-75"
-                      : "text-blueGray-300")
+                      : "text-blueGray-700")
                   }
-                ></i>{" "}Data Kader
+                  />
+                </i>{" "} Data Kader
               </Link>
-            </li>
+            </li>  
+
+            {/* Divider */}
+          <hr className="my-4 md:w-full " />
+
             <li className="items-center">
               <button
-                onClick={handleLogout}
+                onClick={handleLogout} 
                   className={
-                    "text-sm uppercase py-3 font-bold block " +
+                    "text-base uppercase py-3 font-bold block " +
                     (router.pathname.indexOf("/auth/login") !== -1
                       ? "text-green-500 hover:text-green-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
@@ -122,12 +129,12 @@ export default function Sidebar() {
               >
                 <i>
                   <FontAwesomeIcon
-                  icon={faAngleRight}
+                  icon={faPowerOff} style={{ fontSize: '1.5rem' }}
                   className={
-                    "mr-2 text-sm " +
+                    "mr-4 text-base " +
                     (router.pathname.indexOf("/auth/login") !== -1
                       ? "opacity-75"
-                      : "text-blueGray-300")
+                      : "text-blueGray-700")
                   }
                   />
                 </i>{" "}

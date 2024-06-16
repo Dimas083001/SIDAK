@@ -66,11 +66,13 @@ export default function CardProfile() {
       setFotoURL(response.data.fotoURL); // Update URL foto setelah berhasil diunggah
       setIsEditingFoto(false); // Tutup form edit foto setelah selesai
       alert("Foto berhasil diunggah");
+      window.location.reload(); // Refresh halaman setelah mengunggah foto
     } catch (error) {
       console.error(error);
       alert("Error uploading photo");
     }
   };
+
 
   return (
     <>
@@ -81,11 +83,11 @@ export default function CardProfile() {
               <div className="absolute top-0 right-0 mt-5 mr-6">
                 <i className="fas fa-pen text-lg text-blueGray-600 cursor-pointer" onClick={() => handleEditProfile(userData?.nama_pengguna)}></i>
               </div>
-              <div className="relative flex items-center justify-center">
+              <div className="relative flex items-center justify-center text-white">
               <input type="file" id="fileInput" className="hidden" onChange={handleFileChange} accept="image/*" />
-                <label htmlFor="fileInput">
+                <label htmlFor="fileInput"> 
                   <img
-                    alt="  "
+                    alt="Import Foto" 
                     src={fotoURL || '/img/team-2-800x800.jpg'}
                     className="shadow-xl rounded-full h-auto align-middle border-none max -m-16 -ml-20 lg:-ml-16 max-w-150-px cursor-pointer"
                     onClick={() => setIsEditingFoto(true)}

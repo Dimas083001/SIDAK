@@ -31,53 +31,50 @@ db.getConnection()
       if (!req.file) {
         return res.status(400).send('No file uploaded.');
       }
+      
       const allowedExtensions = ['.xls', '.xlsx'];
       const fileExtension = path.extname(req.file.originalname).toLowerCase();
+      
       if (!allowedExtensions.includes(fileExtension)) {
         return res.status(400).send('Hanya file XLS yang diizinkan.');
       }
-
+    
       const workbook = xlsx.readFile(req.file.path);
       const sheetName = workbook.SheetNames[0];
       const sheetData = xlsx.utils.sheet_to_json(workbook.Sheets[sheetName]);
+      
+      const sql = "INSERT INTO data_kader (jenis_kader, nama, no_induk, jenis_kelamin, no_telp, id_Kecamatan) VALUES (?, ?, ?, ?, ?, ?)";
     
-      // Kirim data JSON ke klien
-     console.log(sheetData)
-        // Sisipkan data ke dalam tabel MySQL
-        //       const sql = 'INSERT INTO kader (Nama, Jenis_kader, Jenis_Kelamin, Usia, No_HP, Status_Aktif, SR, Provinsi, Kota_Kabupaten, Kecamatan, Last_Login) VALUES ?';
-        // connectionPool.query(sql, [sheetData.map(Object.values)], (err, result) => {
-        //   if (err) {
-        //     return res.status(500).send('Gagal menyimpan data ke database.');
-        //   }
-        //   res.send('Data berhasil disimpan ke database.');
-        // });
-
-
-        const sql = "INSERT INTO data_kader (jenis_kader, nama, jenis_kelamin, no_telp, id_Kecamatan) VALUES ( ?, ?, ?, ?, ?)";
-
-        // Loop melalui data dan masukkan satu per satu
-        sheetData.forEach(row => {
+      sheetData.forEach(row => {
+        // Hapus spasi pada data no_induk dan konversi ke angka
+        const noIndukString = row['no_induk'].replace(/\s+/g, '');
+        const noInduk = parseInt(noIndukString, 10);
+    
+        // Periksa apakah noInduk adalah angka yang valid setelah konversi
+        if (isNaN(noInduk)) {
+          return res.status(400).send(`Data no_induk tidak valid untuk baris: ${JSON.stringify(row)}`);
+        }
+        
         db.query(sql, [
           row['jenis_kader'],
-          row.nama,
+          row['nama'],
+          noInduk,
           row['jenis_kelamin'],
           row['no_telp'],
           row['id_kecamatan']
-          
         ], (err, result) => {
           if (err) {
             return res.status(500).send('Gagal menyimpan data ke database.');
           }
         });
-        });
-
-        // Hapus file yang diunggah setelah berhasil disimpan ke database
-        fs.unlinkSync(req.file.path);
-        res.send('Data berhasil disimpan ke database.');    
-            
-              console.log('Uploaded file:', req.file);
-              res.send(`File uploaded: ${req.file.filename}`);
-            });
+      });
+    
+      // Hapus file yang diunggah setelah berhasil disimpan ke database
+      fs.unlinkSync(req.file.path);
+      res.send('Data berhasil disimpan ke database.');
+      
+      console.log('Uploaded file:', req.file);
+    });
 
     //Menampilkan Laporan+Penjumlahannya
     router.get('/menampilkan_laporan', async (req, res) => {
@@ -482,87 +479,96 @@ db.getConnection()
     //Laporan SITB
     router.post('/laporansitb', upload.single('file'), async (req, res) => {
       if (!req.file) {
-        return res.status(400).send('No file uploaded.');
+          return res.status(400).send('No file uploaded.');
       }
-    
+  
       const allowedExtensions = ['.xls', '.xlsx'];
       const fileExtension = path.extname(req.file.originalname).toLowerCase();
       if (!allowedExtensions.includes(fileExtension)) {
-        return res.status(400).send('Hanya file XLS yang diizinkan.');
+          return res.status(400).send('Hanya file XLS yang diizinkan.');
       }
-    
+  
       const workbook = xlsx.readFile(req.file.path);
       const sheetName = workbook.SheetNames[0];
       const sheetData = xlsx.utils.sheet_to_json(workbook.Sheets[sheetName]);
-    
+  
       const sqlInsertSITB = "INSERT INTO laporan_sitb (person_id, nama, kota, kecamatan, alamat, kode_yankes, fasyankes, kode_laporan) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
       const sqlInsertUpload = "INSERT INTO upload_file_laporan (nama_file, jenis_laporan, tanggal_entry) VALUES (?, ?, ?)";
-    
+      const sqlCheckPersonId = "SELECT COUNT(*) as count FROM laporan_sitb WHERE person_id = ?";
+  
       const connection = await db.getConnection();
-    
+  
       try {
-        // Mulai transaksi
-        await connection.beginTransaction();
-    
-        // Ambil nama file dari file yang diupload
-        const namaFile = req.file.originalname;
-    
-        // Ambil jenis laporan dari nama tabel yang dimasukkan
-        const jenisLaporan = 'Laporan SITB'; // Sesuaikan dengan jenis laporan yang benar
-    
-        // Insert ke upload_file_laporan dan dapatkan id yang dihasilkan
-        const [result] = await connection.query(sqlInsertUpload, [
-          namaFile,
-          jenisLaporan,
-          new Date().toISOString().slice(0, 10) // Format tanggal saat ini YYYY-MM-DD
-        ]);
-        const kodeLaporan = result.insertId;
-    
-        for (const row of sheetData) {
-          // Hapus petik tunggal atau ganda dari person_id
-          const person_id = String(row['person_id']).replace(/['"]/g, '');
-    
-          // Log nilai untuk debugging
-          console.log("Inserting row:", {
-            person_id,
-            nama: row.nama,
-            kota: row.kabupaten_kota,
-            kecamatan: row.person_kecamatan,
-            alamat: row.alamat,
-            kode_yankes: row.kode_yankes,
-            fasyankes: row.fasyankes,
-            kode_laporan: kodeLaporan
-          });
-    
-          // Insert ke laporan_sitb
-          await connection.query(sqlInsertSITB, [
-            person_id,
-            row.nama,
-            row.kabupaten_kota,
-            row.person_kecamatan,
-            row.alamat,
-            row.kode_yankes,
-            row.fasyankes,
-            kodeLaporan // Masukkan kode_laporan di sini
+          // Mulai transaksi
+          await connection.beginTransaction();
+  
+          // Ambil nama file dari file yang diupload
+          const namaFile = req.file.originalname;
+  
+          // Ambil jenis laporan dari nama tabel yang dimasukkan
+          const jenisLaporan = 'Laporan SITB'; // Sesuaikan dengan jenis laporan yang benar
+  
+          // Insert ke upload_file_laporan dan dapatkan id yang dihasilkan
+          const [result] = await connection.query(sqlInsertUpload, [
+              namaFile,
+              jenisLaporan,
+              new Date().toISOString().slice(0, 10) // Format tanggal saat ini YYYY-MM-DD
           ]);
-        }
-    
-        // Komit transaksi
-        await connection.commit();
-    
-        // Hapus file yang diunggah setelah berhasil disimpan ke database
-        fs.unlinkSync(req.file.path);
-        res.send('Data berhasil disimpan ke database.');
+          const kodeLaporan = result.insertId;
+  
+          for (const row of sheetData) {
+              // Hapus petik tunggal atau ganda dari person_id
+              const person_id = String(row['person_id']).replace(/['"]/g, '');
+  
+              // Cek apakah person_id sudah ada di database
+              const [rows] = await connection.query(sqlCheckPersonId, [person_id]);
+              if (rows[0].count > 0) {
+                  console.log(`Skipping duplicate person_id: ${person_id}`);
+                  continue; // Lewati baris ini jika person_id sudah ada
+              }
+  
+              // Log nilai untuk debugging
+              console.log("Inserting row:", {
+                  person_id,
+                  nama: row.nama,
+                  kota: row.kabupaten_kota,
+                  kecamatan: row.person_kecamatan,
+                  alamat: row.alamat,
+                  kode_yankes: row.kode_yankes,
+                  fasyankes: row.fasyankes,
+                  kode_laporan: kodeLaporan
+              });
+  
+              // Insert ke laporan_sitb
+              await connection.query(sqlInsertSITB, [
+                  person_id,
+                  row.nama,
+                  row.kabupaten_kota,
+                  row.person_kecamatan,
+                  row.alamat,
+                  row.kode_yankes,
+                  row.fasyankes,
+                  kodeLaporan // Masukkan kode_laporan di sini
+              ]);
+          }
+  
+          // Komit transaksi
+          await connection.commit();
+  
+          // Hapus file yang diunggah setelah berhasil disimpan ke database
+          fs.unlinkSync(req.file.path);
+          res.send('Data berhasil disimpan');
       } catch (err) {
-        console.error("Error inserting data:", err);
-        await connection.rollback();
-        res.status(500).send('Gagal menyimpan data ke database.');
+          console.error("Error inserting data:", err);
+          await connection.rollback();
+          res.status(500).send('Gagal menyimpan data');
       } finally {
-        connection.release();
+          connection.release();
       }
-    
+  
       console.log('Uploaded file:', req.file);
-    });
+  });
+  
 
     router.get('/total_laporan_sudah_ik_Perwilayah', async (req, res) => {
       try {
@@ -803,6 +809,7 @@ router.get('/export_excel', async (req, res) => {
     res.status(500).send('Error exporting to Excel');
   }
 });
+
 
   })
   .catch((error) => {

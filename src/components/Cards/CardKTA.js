@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import "@fortawesome/fontawesome-free/css/all.css";
 import { faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 export default function KTADisplay() {
@@ -133,7 +134,7 @@ export default function KTADisplay() {
         <div className="flex justify-between items-center px-6 py-4 bg-white border-b-2">
           <div className="flex items-center">
             <FontAwesomeIcon
-              icon={faCircleChevronLeft}
+              icon={faCircleChevronLeft} style={{ fontSize: '2rem' }}
               className="cursor-pointer text-green-700 text-xl mr-2"
               onClick={() => router.back()}
             />
@@ -142,7 +143,7 @@ export default function KTADisplay() {
           <div className="w-8"></div> {/* Placeholder untuk memberikan ruang kosong seukuran ikon */}
         </div>
         <div className="rounded-t bg-blueGray-100 mb-1 px-6 py-6 border-2">
-          <div className="flex justify-between items-center">
+          <div className="block w-full overflow-x-auto">
             <div className="relative w-full px-3 max-w-full flex-grow flex-1">
               {/* Konten lainnya */}
               <div className="flex items-center justify-center">
@@ -167,18 +168,18 @@ export default function KTADisplay() {
                 </div>
             </div>
             <div className="text-center mt-10">
-            <button
+                <button
                     onClick={handlePrint}
-                    className="bg-orange-500 active:bg-blueGray-600 text-white font-bold text-sm px-4 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                    className="bg-orange-500 active:bg-blueGray-600 text-white font-bold text-sm px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                     style={{ marginRight: '15px' }}
                 >
-                    Cetak
+                <i className="fas fa-print mr-2"></i> Cetak
                 </button>
                 <button
                     onClick={() => router.back()}
-                    className="bg-blueGray-400 active:bg-blueGray-600 text-white font-bold text-sm px-4 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150"
+                    className="bg-blueGray-400 active:bg-blueGray-600 text-white font-bold text-sm px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150"
                 >
-                    Batal
+                <i className="fas fa-times mr-2"></i> Batal
                 </button>
             </div>
         </div>

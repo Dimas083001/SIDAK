@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons'; // Import the faSearch icon
+import "@fortawesome/fontawesome-free/css/all.css";
 import axios from 'axios';
 
 export default function TableDK() {
@@ -306,7 +309,7 @@ export default function TableDK() {
                 value={filterProvinsi}
                 onChange={handleFilterChange}
               >
-                <option value="All">All</option>
+                <option key="All" value="All">All</option>
                 {provinsiData.map((provinsi) => (
                   <option key={provinsi.id} value={provinsi.nama}>{provinsi.nama}</option>
                 ))}
@@ -359,12 +362,13 @@ export default function TableDK() {
           </div>
           <div className="w-1/2 sm:w-1/2 md:w-1/4 px-2 mb-4">
             <input
-              type="text"
-              placeholder="Cari..."
-              className="w-full mt-5 py-2 pl-10 pr-4 border border-gray-900 rounded-full leading-5 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:border-blue-300 focus:shadow-outline-blue sm:text-sm"
-              value={searchTerm}
-              onChange={handleSearchChange}
-            />
+            type="text"
+            placeholder="Cari..." 
+            className="w-full mt-5 py-2 pl-10 pr-4 border border-gray-900 rounded-full leading-5 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:border-blue-300 focus:shadow-outline-blue sm:text-sm"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+          
             <div className="absolute top-0 right-0 mt-3 mr-6 lg:mt-4 lg:mr-8">
               <svg
                 className="text-gray-600 h-6 lg:h-8 w-6 lg:w-8 fill-current"
@@ -381,7 +385,6 @@ export default function TableDK() {
             </div>
           </div>
         </div>
-
         <div className="overflow-x-auto">
           <div className="rounded-t bg-white mb-1 px-3 py-3 border-collapse">
             <div className="flex justify-between items-center">
@@ -391,15 +394,14 @@ export default function TableDK() {
                 </h6>
               </div>
               <div className="flex justify-end mr-2">
-                <button type="button" onClick={handleTambahKader} className="bg-green-600 text-white font-medium py-1 px-3 rounded mr-2">
-                  Tambah Kader
-                </button>
+              <button type="button" onClick={handleTambahKader} className="bg-green-600 hover:bg-green-800 text-white font-medium py-1 px-3 rounded mr-2">
+                <i className="fas fa-plus"></i> Tambah Kader
+              </button>
               </div>
             </div>
           </div>
         </div>
-
-        <table className="items-center w-full bg-white border-collapse">
+        <table className=" block w-full overflow-x-auto">
           <thead className="bg-blueGray-50">
             <tr>
               <th className="px-6 py-3 text-center text-xs font-bold text-green-700 uppercase tracking-wider">
@@ -440,41 +442,39 @@ export default function TableDK() {
               </th>
             </tr>
           </thead>
-  <tbody className="divide-y divide-gray-200">
-  {currentItems.map((kader, index) => (
-      <tr key={kader.id}>
-        <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-semibold text-gray-900">
-          {(currentPage - 1) * itemsPerPage + index + 1}
-        </td>
-        <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.no_induk}</td>
-        <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.nama}</td>
-        <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.jenis_kader}</td>
-        {/* <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.jenis_kelamin}</td> */}
-        {/* <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.no_telp}</td> */}
-        <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.nama_kecamatan}</td>
-        <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.nama_kota}</td>
-        {/* <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.nama_provinsi}</td> */}
-        <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.status}</td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-          <button onClick={() => handleEditKader(kader.id)} className="mr-2 bg-blueGray-700 hover:bg-green-700 text-white font-bold py-1 px-4 rounded">
-            Ubah
-          </button>
-          <button onClick={() => handleButtonHapus(kader.id)} className="bg-red-700 hover:bg-red-700 text-white font-bold py-1 px-4 rounded">
-            Hapus
-          </button>
-        </td>
-        <td>
-          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-            <div>
-              <button onClick={() => handleLihatKTA(kader.id)} className="bg-yellow-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded">
-                Lihat
-              </button>
-            </div>
-          </td>  
-        </td>
-      </tr>
-    ))}
-</tbody>
+          <tbody className="divide-y divide-gray-200">
+            {currentItems.map((kader, index) => (
+              <tr key={kader.id}>
+                <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-semibold text-gray-900">
+                  {(currentPage - 1) * itemsPerPage + index + 1}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.no_induk}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.nama}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.jenis_kader}</td>
+                {/* <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.jenis_kelamin}</td> */}
+                {/* <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.no_telp}</td> */}
+                <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.nama_kecamatan}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.nama_kota}</td>
+                {/* <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.nama_provinsi}</td> */}
+                <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">{kader.status}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                <button onClick={() => handleEditKader(kader.id)} className="mr-2 bg-blueGray-700 hover:bg-blueGray-900 text-white font-bold py-1 px-4 rounded">
+                  <i className="fas fa-edit"></i> Ubah
+                </button>
+                <button onClick={() => handleButtonHapus(kader.id)} className="bg-red-700 hover:bg-red-900 text-white font-bold py-1 px-4 rounded">
+                  <i className="fas fa-trash-alt"></i> Hapus
+                </button>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                <div>
+                <button onClick={() => handleLihatKTA(kader.id)} className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-4 rounded">
+                  <i className="fas fa-eye"></i> Lihat
+                </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
           </table>
         </div>
         {/* Pagination */}

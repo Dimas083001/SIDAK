@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
 
 export default function FormEditKecamatan() {
@@ -94,14 +96,14 @@ export default function FormEditKecamatan() {
                 className="bg-green-700 active:bg-blueGray-600 text-white font-bold text-sm px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 ml-auto"
                 type="submit"
               >
-                Simpan
+                <FontAwesomeIcon icon={faSave} className="mr-2" /> Simpan
               </button>
               <button
                 className="bg-blueGray-400 active:bg-blueGray-600 text-white font-bold text-sm px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                 type="button"
                 onClick={handleButtonKembaliClick}
               >
-                Batal 
+                <FontAwesomeIcon icon={faTimes} className="mr-2" /> Batal 
               </button>
             </div>
           </form>

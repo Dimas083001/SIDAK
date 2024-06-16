@@ -129,7 +129,7 @@ export default function LihatKTADisplay() {
 
     return (
         <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-            <div className="overflow-x-auto">
+            <div className="block w-full overflow-x-auto">
             <h1 className="text-2xl font-bold text-center mb-4 mt-4">Kartu Tanda Anggota</h1>
                 <div className="rounded-t bg-white mb-1 px-6 py-6 border-2">
                     <div className="flex justify-between items-center">
@@ -162,14 +162,14 @@ export default function LihatKTADisplay() {
                     className="bg-orange-500 active:bg-blueGray-600 text-white font-bold text-sm px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                     style={{ marginRight: '15px' }}
                 >
-                    Cetak
-                </button>
-                <button
+                <i className="fas fa-print mr-2"></i> Cetak
+            </button>
+            <button
                     onClick={() => router.back()}
                     className="bg-blueGray-400 active:bg-blueGray-600 text-white font-bold text-sm px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150"
                 >
-                    Batal
-                </button>
+                <i className="fas fa-times mr-2"></i> Batal
+            </button>
             </div>
         </div>
         </div>

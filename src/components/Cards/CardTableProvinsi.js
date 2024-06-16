@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "@fortawesome/fontawesome-free/css/all.css";
 import { useRouter } from 'next/router';
 
 export default function TableProvinsi() {
@@ -90,7 +91,7 @@ export default function TableProvinsi() {
             </thead>
             <tbody className="divide-y divide-gray-200">
               {provinsiData.map((provinsi, index) => (
-                <tr key={provinsi.id_provinsi}>
+                <tr key={provinsi.id}>
                   <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-semibold text-gray-900">
                     {index + 1}
                   </td>
@@ -109,7 +110,7 @@ export default function TableProvinsi() {
                       onClick={() => handleDelete(provinsi.id)}
                       className="bg-red-700 text-white font-medium py-1 px-3 rounded mr-2"
                     >
-                      Hapus
+                      <i className="fas fa-trash-alt mr-1"></i> Hapus
                     </button>
                   </td>
                 </tr>

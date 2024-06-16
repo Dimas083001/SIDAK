@@ -22,9 +22,10 @@ const monthMap = {
 };
 
 export default function CardLineChart() {
+  const currentYear = new Date().getFullYear();
   const [startMonth, setStartMonth] = useState("Januari");
   const [endMonth, setEndMonth] = useState("Desember");
-  const [selectedYear, setSelectedYear] = useState("2024");
+  const [selectedYear, setSelectedYear] = useState(currentYear);
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [],

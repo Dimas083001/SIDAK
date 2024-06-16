@@ -249,14 +249,14 @@ export default function InsertKader() {
                 className="bg-green-700 active:bg-blueGray-600 text-white font-bold text-sm px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                 type="submit"
               >
-                Simpan
+                <i className="fas fa-save mr-2"></i> Simpan
               </button>
               <button
                 className="bg-blueGray-400 active:bg-blueGray-600 text-white font-bold text-sm px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                 type="button"
                 onClick={handleButtonKembaliClick}
               >
-                Batal
+                <i className="fas fa-times mr-2"></i> Batal
               </button>
             </div>
           </form>

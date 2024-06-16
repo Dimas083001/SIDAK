@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import "@fortawesome/fontawesome-free/css/all.css";
 
 export default function TableKota() {
     const router = useRouter();
@@ -102,8 +105,12 @@ export default function TableKota() {
                                 </h6>
                             </div>
                             <div className="flex justify-end mr-2">
-                                <button type="button" onClick={handleButtonTambahClick} className="bg-green-600 text-white font-medium py-1 px-3 rounded mr-3">
-                                    Tambah Kota
+                                <button
+                                    type="button"
+                                    onClick={handleButtonTambahClick}
+                                className="bg-green-600 text-white font-medium py-1 px-3 rounded mr-3 flex items-center"
+                                >
+                                <i className="fas fa-plus-circle mr-2"></i> Tambah Kota
                                 </button>
                             </div>
                         </div>
@@ -165,29 +172,31 @@ export default function TableKota() {
                                     <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">
                                         {item.kota}
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">
-                                        <button  
+                                    <td className="px-6 py-4 whitespace-nowrap text-center text-xs text-gray-800">
+                                    <button
                                             type="button"
                                             onClick={() => handleButtonLihatClick(item.id_kota)}
-                                            className="bg-yellow-500 text-white font-bold py-1 px-3 rounded mr-2"
-                                        > Lihat
-                                        </button>  
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-800">
-                                    <button
-                                        type="button"
-                                        onClick={() => handleButtonUbahClick(item.id_kota)}
-                                        className="bg-blueGray-700 text-white font-bold py-1 px-3 rounded mr-2"
+                                            className="bg-yellow-500 text-white font-bold py-1 px-3 rounded mr-2 flex items-center"
                                         >
-                                        Ubah
+                                            <FontAwesomeIcon icon={faEye} className="mr-1" /> Lihat
+                                        </button> 
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-center text-xs text-gray-800">
+                                    <button
+                                            type="button"
+                                            onClick={() => handleButtonUbahClick(item.id_kota)}
+                                            className="bg-blueGray-700 hover:bg-blueGray-900 text-white font-bold py-1 px-3 rounded mr-2"
+                                        >
+                                            <FontAwesomeIcon icon={faEdit} className="mr-1" /> Ubah
                                         </button>
                                         <button
                                             type="button"
                                             onClick={() => handleButtonHapusClick(item.id_kota)}
-                                            className="bg-red-700 text-white font-bold py-1 px-3 rounded mr-2"
-                                        >
-                                            Hapus
-                                        </button>
+                                            className="bg-red-700 hover:bg-red-900 text-white font-bold py-1 px-3 rounded mr-2"
+                                            >
+                                            <FontAwesomeIcon icon={faTrashAlt} className="mr-1" /> Hapus
+                                          </button>
+                                        
                                     </td>
                                 </tr>
                             ))}

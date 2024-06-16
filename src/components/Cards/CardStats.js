@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export default function CardStats({
-  statSubtitle,
-  statTitle,
-  statIconColor,
+  statSubtitle = "Traffic",
+  statTitle = 350897, // Mengonversi ke string jika memang ingin mengirimkan angka
+  statIconColor = "bg-red-500",
 }) {
   return (
     <>
@@ -16,7 +16,7 @@ export default function CardStats({
                 {statSubtitle}
               </h5>
               <span className="font-semibold text-xl text-blueGray-700">
-                {statTitle}
+                {String(statTitle)} {/* Mengonversi ke string di sini */}
               </span>
             </div>
             <div className="relative w-auto pl-4 flex-initial">
@@ -28,21 +28,15 @@ export default function CardStats({
               >
               </div>
             </div>
-            </div>
+          </div>
         </div>
       </div>
     </>
   );
 }
 
-CardStats.defaultProps = {
-  statSubtitle: "Traffic",
-  statTitle: "350,897",
-  statIconColor: "bg-red-500",
-};
-
 CardStats.propTypes = {
   statSubtitle: PropTypes.string,
-  statTitle: PropTypes.string,
+  statTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), // Mengizinkan tipe data string atau number
   statIconColor: PropTypes.string,
 };
