@@ -15,7 +15,7 @@ export default function TableKota() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("https://sidak-ils-three.vercel.app/wilayah");
+                const response = await axios.get("http://localhost:8000/wilayah");
                 setData(response.data);
             } catch (error) {
                 console.error(error);
@@ -37,7 +37,7 @@ export default function TableKota() {
     
     const handleButtonUbahClick = async (id_kota) => {
         try {
-          const response = await axios.get(`https://sidak-ils-three.vercel.app/kota/${id_kota}`);
+          const response = await axios.get(`http://localhost:8000/kota/${id_kota}`);
           const dataToEdit = response.data;
           router.push({
             pathname: `/admin/kota/edit/`,
@@ -54,7 +54,7 @@ export default function TableKota() {
     const handleButtonHapusClick = async (id_kota) => {
         try {
             // Check if there are any related data in the database
-            const response = await axios.get(`https://sidak-ils-three.vercel.app/kota/${id_kota}`);
+            const response = await axios.get(`http://localhost:8000/kota/${id_kota}`);
             const kotaData = response.data;
             const relatedData = data.filter(item => item.provinsi === kotaData.provinsi && item.kota === kotaData.kota);
             
@@ -62,7 +62,7 @@ export default function TableKota() {
             if (relatedData.length === 0) {
                 const confirmDelete = confirm('Apakah kamu yakin ingin menghapus Kota/Kabupaten ini?');
                 if (confirmDelete) {
-                    axios.delete(`https://sidak-ils-three.vercel.app/kota/${id_kota}`)
+                    axios.delete(`http://localhost:8000/kota/${id_kota}`)
                         .then(() => {
                             // Hapus item dari state data setelah sukses menghapus dari server
                             setData(data.filter(item => item.id_kota !== id_kota));

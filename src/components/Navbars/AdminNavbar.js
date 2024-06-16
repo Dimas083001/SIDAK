@@ -20,8 +20,8 @@ export default function Navbar() {
 
   const fetchUserData = async (namaPengguna) => {
     try {
-      const response = await axios.get(`https://sidak-ils-three.vercel.app/akun/${namaPengguna}`);
-      setFotoURL(`https://sidak-ils-three.vercel.app${response.data.foto_url}`);
+      const response = await axios.get(`http://localhost:8000/akun/${namaPengguna}`);
+      setFotoURL(`http://localhost:8000${response.data.foto_url}`);
     } catch (error) {
       console.error("Error fetching user data:", error);
     }

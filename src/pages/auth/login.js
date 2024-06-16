@@ -12,7 +12,7 @@ export default function Login() {
     e.preventDefault(); // Mencegah perilaku default dari form
 
     try {
-      const response = await axios.post('https://sidak-ils-three.vercel.app/login', {
+      const response = await axios.post('http://localhost:8000/login', {
         nama_pengguna: username,
         kata_sandi: password,
       });

@@ -19,7 +19,7 @@ export default function FormInsertSSR() {
   useEffect(() => {
     const fetchKotaKabupaten = async () => {
       try {
-        const response = await axios.get('https://sidak-ils-three.vercel.app/nama-kota');
+        const response = await axios.get('http://localhost:8000/nama-kota');
         setKotaKabupatenList(response.data);
       } catch (error) {
         console.error('Error fetching kota/kabupaten:', error);
@@ -38,7 +38,7 @@ export default function FormInsertSSR() {
     const confirmation = window.confirm("Apakah anda yakin ingin menambahkan akun?");
     if (confirmation) {
       try {
-        const response = await axios.post('https://sidak-ils-three.vercel.app/akun', formData);
+        const response = await axios.post('http://localhost:8000/akun', formData);
         console.log(response.data); // Menampilkan respon dari server
       } catch (error) {
         console.error('Error creating account:', error);

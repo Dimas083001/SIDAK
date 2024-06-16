@@ -23,7 +23,7 @@ export default function FormUploadKTA() {
 
     const fetchKaderData = async (id) => {
         try {
-            const response = await axios.get(`https://sidak-ils-three.vercel.app/kader/${id}`);
+            const response = await axios.get(`http://localhost:8000/kader/${id}`);
             const kader = response.data;
             setNama(kader.nama);
             setNomorInduk(kader.no_induk);
@@ -63,7 +63,7 @@ export default function FormUploadKTA() {
         }
     
         try {
-          const response = await axios.post('https://sidak-ils-three.vercel.app/kta', formData, {
+          const response = await axios.post('http://localhost:8000/kta', formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }

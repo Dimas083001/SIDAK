@@ -9,7 +9,7 @@ export default function HeaderStats() {
   useEffect(() => {
     const fetchTotalLaporan = async () => {
       try {
-        const response = await axios.get("https://sidak-ils-three.vercel.app/jumlah_total_laporan");
+        const response = await axios.get("http://localhost:8000/jumlah_total_laporan");
         setTotalLaporan(response.data);
       } catch (error) {
         console.error("Error fetching total laporan data:", error);
@@ -18,7 +18,7 @@ export default function HeaderStats() {
 
     const fetchTotalBelumIk = async () => {
       try {
-        const response = await axios.get("https://sidak-ils-three.vercel.app/menampilkan_status_ik_belum");
+        const response = await axios.get("http://localhost:8000/menampilkan_status_ik_belum");
         setTotalBelumIk(response.data.total_belumik);
       } catch (error) {
         console.error("Error fetching total belum IK data:", error);

@@ -11,7 +11,7 @@ export default function TableProvinsi() {
   useEffect(() => {
     const fetchProvinsiData = async () => {
       try {
-        const response = await axios.get('https://sidak-ils-three.vercel.app/provinsi');
+        const response = await axios.get('http://localhost:8000/provinsi');
         setProvinsiData(response.data);
       } catch (error) {
         console.error('Error fetching provinsi data:', error);
@@ -28,7 +28,7 @@ export default function TableProvinsi() {
   const handleDelete = async (id) => {
     if (window.confirm('Apakah Anda yakin ingin menghapus provinsi ini?')) {
       try {
-        await axios.delete(`https://sidak-ils-three.vercel.app/provinsi/${id}`);
+        await axios.delete(`http://localhost:8000/provinsi/${id}`);
         const updatedProvinsiData = provinsiData.filter((provinsi) => provinsi.id !== id);
         setProvinsiData(updatedProvinsiData);
         alert('Provinsi berhasil dihapus.');

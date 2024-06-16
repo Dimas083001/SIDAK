@@ -19,7 +19,7 @@ export default function TableKecamatan() {
         if (id_kota) {
             const fetchData = async () => {
                 try {
-                    const response = await axios.get(`https://sidak-ils-three.vercel.app/kecamatan-by-kota/${id_kota}`);
+                    const response = await axios.get(`http://localhost:8000/kecamatan-by-kota/${id_kota}`);
                     setData(response.data);
                 } catch (error) {
                     console.error(error);
@@ -33,7 +33,7 @@ export default function TableKecamatan() {
         if (prevIdKota) {
             const fetchNamaKota = async () => {
                 try {
-                    const response = await axios.get(`https://sidak-ils-three.vercel.app/kota/${prevIdKota}`);
+                    const response = await axios.get(`http://localhost:8000/kota/${prevIdKota}`);
                     setNamaKota(response.data.nama_kota);
                 } catch (error) {
                     console.error(error);
@@ -57,7 +57,7 @@ export default function TableKecamatan() {
     const handleButtonHapusClick = (nama_kecamatan) => {
         const confirmDelete = confirm('Apakah kamu yakin ingin menghapus Kecamatan ini?');
         if (confirmDelete) {
-            axios.delete(`https://sidak-ils-three.vercel.app/kecamatan/nama/${nama_kecamatan}`)
+            axios.delete(`http://localhost:8000/kecamatan/nama/${nama_kecamatan}`)
                 .then(() => {
                     setData(data.filter(item => item.nama_kecamatan !== nama_kecamatan));
                 })

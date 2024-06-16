@@ -20,7 +20,7 @@ export default function FormEditSSR() {
     const fetchData = async () => {
       try {
         if (nama_pengguna) {
-          const response = await axios.get(`https://sidak-ils-three.vercel.app/akun/${nama_pengguna}`);
+          const response = await axios.get(`http://localhost:8000/akun/${nama_pengguna}`);
           const dataToEdit = response.data;
           setFormData({
             nama: dataToEdit.nama,
@@ -47,7 +47,7 @@ export default function FormEditSSR() {
   const handleSubmit = async (event) => {
   event.preventDefault();
   try {
-    const response = await axios.put(`https://sidak-ils-three.vercel.app/akun/${formData.nama_pengguna}`, formData);
+    const response = await axios.put(`http://localhost:8000/akun/${formData.nama_pengguna}`, formData);
     if (response.status === 200) {
       alert("Data updated successfully");
       router.push("/admin/ssr"); // Redirect ke halaman lain setelah perubahan berhasil
@@ -66,7 +66,7 @@ export default function FormEditSSR() {
 
 const fetchKotaKabupaten = async () => {
   try {
-    const response = await axios.get('https://sidak-ils-three.vercel.app/nama-kota');
+    const response = await axios.get('http://localhost:8000/nama-kota');
     setKotaKabupatenList(response.data);
   } catch (error) {
     console.error('Error fetching kota/kabupaten:', error);

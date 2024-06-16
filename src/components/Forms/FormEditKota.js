@@ -21,7 +21,7 @@ export default function FormEditKota() {
             try {
                 if (id_kota) {
                     console.log(`Fetching data for kota with id_kota: ${id_kota}`);
-                    const response = await axios.get(`https://sidak-ils-three.vercel.app/kota/${id_kota}`);
+                    const response = await axios.get(`http://localhost:8000/kota/${id_kota}`);
                     const dataToEdit = response.data;
                     console.log('Data fetched:', dataToEdit);
                     setKota({
@@ -43,7 +43,7 @@ export default function FormEditKota() {
         const confirmation = window.confirm("Apakah anda yakin ingin mengubah data kota?");
         if (confirmation) {
             try {
-                await axios.put(`https://sidak-ils-three.vercel.app/kota/${id_kota}`, kota);
+                await axios.put(`http://localhost:8000/kota/${id_kota}`, kota);
                 router.push('/admin/kota/');
             } catch (error) {
                 console.error('There was an error updating the item!', error);

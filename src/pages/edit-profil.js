@@ -28,7 +28,7 @@ export default function EditProfil() {
         }
 
         try {
-            const response = await fetch('https://sidak-ils-three.vercel.app/profiles', {
+            const response = await fetch('http://localhost:8000/profiles', {
                 method: 'POST',
                 body: formData,
             });
