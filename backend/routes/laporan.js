@@ -199,7 +199,7 @@ db.getConnection()
         const kodeLaporan = result.insertId;
     
         for (const row of sheetData) {
-          const tanggalData = row.Tanggal_Data;
+          const tanggalData = row["Tanggal Data"];
           if (tanggalData) {
             const [tanggal, bulan, tahun] = String(tanggalData).split('-').map(Number);
             if (!isNaN(tanggal) && !isNaN(bulan) && !isNaN(tahun)) {
