@@ -83,7 +83,7 @@ export default function CardPageVisits() {
           <div className="flex flex-wrap items-center justify-between">
             <div className="w-full px-4 flex-1">
               <h3 className="font-semibold text-base text-xl text-blueGray-700 mt-2 mb-4">
-                Total Laporan Perwilayah
+                Pemeringkatan Kader
               </h3>
               <div className="inline-flex flex-wrap justify-start">
                 <select
