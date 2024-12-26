@@ -13,7 +13,7 @@ export default function Auth({ children }) {
           <div
             className="absolute top-0 w-full h-full bg-green-800 bg-no-repeat bg-full "
             style={{
-               backgroundImage: "url('/img/bglogin6.Jpg')",
+               backgroundImage: "url('https://img.freepik.com/free-vector/comic-style-background_23-2148809728.jpg?t=st=1735230789~exp=1735234389~hmac=a438356eb2a35d4436d1d6e226057e531d51e2a40224e99aec6b11a8e0e8f53b&w=1380')",
             }}
           ></div>
           {children}
