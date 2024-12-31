@@ -12,7 +12,7 @@ export default function Login() {
     e.preventDefault(); // Mencegah perilaku default dari form
 
     try {
-      const response = await axios.post('http://localhost:8000/login', {
+      const response = await axios.post('https://api.sidak.lampungsehat.org/login', {
         nama_pengguna: username,
         kata_sandi: password,
       });

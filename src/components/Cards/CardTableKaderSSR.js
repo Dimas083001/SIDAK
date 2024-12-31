@@ -31,7 +31,7 @@ export default function TableDK() {
 
   const fetchKaderData = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/kader');
+      const response = await axios.get('https://api.sidak.lampungsehat.org/kader');
       setKaderData(response.data);
     } catch (error) {
       console.error('Error fetching kader data:', error);
@@ -41,7 +41,7 @@ export default function TableDK() {
   
   const fetchProvinsiData = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/filter-options');
+      const response = await axios.get('https://api.sidak.lampungsehat.org/filter-options');
       setProvinsiData(response.data.provinsi);
     } catch (error) {
       console.error('Error fetching provinsi data:', error);
@@ -50,7 +50,7 @@ export default function TableDK() {
   
   const fetchKabupatenData = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/filter-options');
+      const response = await axios.get('https://api.sidak.lampungsehat.org/filter-options');
       setKabupatenData(response.data.kota);
     } catch (error) {
       console.error('Error fetching kabupaten data:', error);
@@ -59,7 +59,7 @@ export default function TableDK() {
   
   const fetchKecamatanData = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/filter-options');
+      const response = await axios.get('https://api.sidak.lampungsehat.org/filter-options');
       setKecamatanData(response.data.kecamatan);
     } catch (error) {
       console.error('Error fetching kecamatan data:', error);
@@ -119,7 +119,7 @@ export default function TableDK() {
     setSearchTerm(value);
 
     try {
-      const response = await axios.get(`http://localhost:8000/filter-kader?search=${value}`);
+      const response = await axios.get(`https://api.sidak.lampungsehat.org/filter-kader?search=${value}`);
       setFilteredData(response.data);
     } catch (error) {
       console.error('Error fetching filtered data:', error);
@@ -128,7 +128,7 @@ export default function TableDK() {
 
   const handleEditKader = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:8000/kader/${id}`);
+      const response = await axios.get(`https://api.sidak.lampungsehat.org/kader/${id}`);
       const dataToEdit = response.data;
       router.push({
         pathname: `kader/EditKader/`,
@@ -151,7 +151,7 @@ export default function TableDK() {
     const confirmation = window.confirm("Apakah anda yakin ingin menghapus data?");
     if (confirmation) {
       try {
-        await axios.delete(`http://localhost:8000/kader/${id}`);
+        await axios.delete(`https://api.sidak.lampungsehat.org/kader/${id}`);
         // Update kembali data setelah hapus
         fetchKaderData();
         console.log("Data kader berhasil dihapus");

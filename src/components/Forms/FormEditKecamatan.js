@@ -22,7 +22,7 @@ export default function FormEditKecamatan() {
 
   const fetchData = async (nama_kecamatan, id_kota) => {
     try {
-      const response = await axios.get(`http://localhost:8000/kecamatan-by-nama/${nama_kecamatan}/${id_kota}`);
+      const response = await axios.get(`https://api.sidak.lampungsehat.org/kecamatan-by-nama/${nama_kecamatan}/${id_kota}`);
       const data = response.data;
       setKecamatan(data);
     } catch (error) {
@@ -38,7 +38,7 @@ export default function FormEditKecamatan() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8000/kecamatan/${kecamatan.id}`, kecamatan);
+      await axios.put(`https://api.sidak.lampungsehat.org/kecamatan/${kecamatan.id}`, kecamatan);
       alert("Kecamatan updated successfully");
       router.back(); // Kembali ke halaman sebelumnya
     } catch (error) {

@@ -21,7 +21,7 @@ export default function TambahLaporan() {
       const formData = new FormData();
       formData.append('file', file);
   
-      const response = await fetch(`http://localhost:8000/${endpoint}`, {
+      const response = await fetch(`https://api.sidak.lampungsehat.org/${endpoint}`, {
         method: 'POST',
         body: formData,
       });

@@ -20,8 +20,8 @@ export default function Navbar() {
 
   const fetchUserData = async (namaPengguna) => {
     try {
-      const response = await axios.get(`http://localhost:8000/akun/${namaPengguna}`);
-      setFotoURL(`http://localhost:8000${response.data.foto_url}`);
+      const response = await axios.get(`https://api.sidak.lampungsehat.org/akun/${namaPengguna}`);
+      setFotoURL(`https://api.sidak.lampungsehat.org${response.data.foto_url}`);
     } catch (error) {
       console.error("Error fetching user data:", error);
     }

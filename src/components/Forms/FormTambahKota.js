@@ -24,7 +24,7 @@ export default function FormTambahKota() {
   useEffect(() => {
     const fetchProvinsiData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/provinsi');
+        const response = await axios.get('https://api.sidak.lampungsehat.org/provinsi');
         const options = response.data.map(prov => ({
           value: prov.kode_provinsi,
           label: prov.nama_provinsi
@@ -84,7 +84,7 @@ export default function FormTambahKota() {
           id_provinsi: id_provinsiToSend
         };
 
-        const response = await axios.post('http://localhost:8000/tambah-data', dataToSend);
+        const response = await axios.post('https://api.sidak.lampungsehat.org/tambah-data', dataToSend);
         console.log(response.data);
         setFormData(initialFormData);
         router.push('/admin/kota/');

@@ -14,7 +14,7 @@ export default function TableLaporan({ color }) {
   useEffect(() => {
     const fetchLaporan = async () => {
         try {
-            const response = await axios.get("http://localhost:8000/menampilkan_laporan");
+            const response = await axios.get("https://api.sidak.lampungsehat.org/menampilkan_laporan");
             setLaporan, setData (response.data);
         } catch (error) {
             console.error(error);

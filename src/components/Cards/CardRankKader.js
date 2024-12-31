@@ -26,7 +26,7 @@ export default function CardPageVisits() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8000/peringkat_kader');
+        const response = await fetch('https://api.sidak.lampungsehat.org/peringkat_kader');
         const result = await response.json();
         setData(result);
       } catch (error) {

@@ -12,14 +12,14 @@ export default function TableIK({ color }) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 100;
   const [totalPages, setTotalPages] = useState(1);
-  const apiUrl = "http://localhost:8000/menampilkan_status_ik_belum";
+  const apiUrl = "https://api.sidak.lampungsehat.org/menampilkan_status_ik_belum";
   const [filterKota, setFilterKota] = useState("All");
   const [kotaData, setKotaData] = useState([]);
 
   useEffect(() => {
     const fetchKotaData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/filter-options');
+        const response = await axios.get('https://api.sidak.lampungsehat.org/filter-options');
         setKotaData(response.data.kota);
       } catch (error) {
         console.error(error);
@@ -60,7 +60,7 @@ export default function TableIK({ color }) {
 
   const handleButtonExportClick = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/export_excel", {
+      const response = await axios.get("https://api.sidak.lampungsehat.org/export_excel", {
         params: { kota: filterKota },
       });
       const data = response.data;
