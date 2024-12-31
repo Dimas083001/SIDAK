@@ -1,17 +1,21 @@
-require('dotenv').config(); // Memuat variabel lingkungan dari file .env
 const mysql = require("mysql2/promise");
 
 // MySQL database connection
 const db = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
-  port: process.env.DB_PORT,
+  host: "api.sidak.lampungsehat.org",
+  user: "lampungsehat_sidak30",
+  password: "sidak_1234",
+  database: "lampungsehat_db_sidak",
+  port: 3306,
 });
 
-db.getConnection().then((connection) => {
-  console.log("Connected to MySQL database");
-});
+db.getConnection()
+  .then((connection) => {
+    console.log("Connected to MySQL database");
+    connection.release(); // Jangan lupa melepaskan koneksi
+  })
+  .catch((err) => {
+    console.error("Unable to connect to MySQL database:", err.message);
+  });
 
 module.exports = db;
